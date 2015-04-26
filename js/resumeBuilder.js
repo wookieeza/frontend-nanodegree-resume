@@ -32,7 +32,30 @@ work.city = "Dublin";
 var education = {};
 education["name"] = "TCD";
 education["years"] = 2;
-education["city"] = "Dublin"
+education["city"] = "Dublin";
+
+var educationJson ={
+    "schools": [
+        {
+            "institution": "TUKS",
+            "years": 3,
+            "course": " BIS Multimedia",
+            "pass": 2004
+        },
+        {
+            "institution": "TUKS",
+            "years": 2,
+            "course": "BSc Hons Computer Science",
+            "pass": 2006
+        },
+        {
+            "institution": "TCD",
+            "years": 2,
+            "course": "MSc Health Informatics",
+            "pass": 2014
+        }
+    ]
+}
 
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
