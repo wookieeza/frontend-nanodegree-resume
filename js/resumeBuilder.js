@@ -34,6 +34,7 @@ var work = {
     "work": [
     {
         "employer":"Opticode",
+        "employerUrl":"http://www.opticode.co.za",
         "title": "Junior Developer",
         "location": "Pretoria",
         "dates": "2001 - 2003",
@@ -41,6 +42,7 @@ var work = {
     },
     {
         "employer":"Psybergate",
+        "employerUrl":"http://www.psybergate.co.za",
         "title": "Developer",
         "location": "Pretoria",
         "dates": "2003 - 2005",
@@ -48,6 +50,7 @@ var work = {
     },
     {
         "employer":"Mobile Travel Technologies",
+        "employerUrl":"http://www.mttnow.com",
         "title": "Senior Developer",
         "location": "Dublin",
         "dates": "2006 - 2013",
@@ -79,8 +82,32 @@ var projects = {
 ]
 };
 
+if(bio.skills.length>0){
+
+  $("#header").append(HTMLskillsStart);
+    HTMLskills.replace("%data%",bio.skills[0]);
+
+    $("#skills").append( HTMLskills.replace("%data%",bio.skills[0]));
+    $("#skills").append( HTMLskills.replace("%data%",bio.skills[1]));
+    $("#skills").append( HTMLskills.replace("%data%",bio.skills[2]));
+    $("#skills").append( HTMLskills.replace("%data%",bio.skills[3]));
 
 
+}
+
+$("#workExperience").append(HTMLworkStart);
+for ( job in work.work){
+
+    var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",work.work[job].employer);
+    var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.work[job].title);
+    var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[job].dates);
+    var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%",work.work[job].location);
+    var formattedHTMLworkDescription = HTMLworkDescription.replace("%data%",work.work[job].description);
+
+    $(".work-entry").append(formattedHTMLworkEmployer + formattedHTMLworkTitle);
+}
+
+/*
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
 var formattedContactEmail = HTMLcontactGeneric.replace("%contact%","Email").replace("%data%", bio.contact.email);
@@ -102,7 +129,7 @@ $("#topContacts").append([formattedContactTelephone]);
 $("#workExperience").append(HTMLworkStart);
 $(".work-entry").append(formattedHTMLworkDates);
 $("#education").append(HTMLschoolStart);
-$(".education-entry").append(formattedHTMLschoolDates);
+$(".education-entry").append(formattedHTMLschoolDates);*/
 
 
 
