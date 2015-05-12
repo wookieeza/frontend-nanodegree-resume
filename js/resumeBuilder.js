@@ -1,19 +1,3 @@
-//$("#main").append(['Debbie Wood']);
-
-var awesomeThoughts = "I am Debbie and I am AWESOME!";
-
-console.log(awesomeThoughts);
-
-var funThoughts = awesomeThoughts.replace("AWESOME","FUN");
-console.log(funThoughts);
-
-//$("#main").append([funThoughts]);
-
-
-var audacityStr = "Audacity";
-var udacity = audacityStr.slice(1).replace("u","U");
-console.log(udacity);
-
 var bio = {
     name: "Debbie Wood",
     role: "Senior Engineer",
@@ -23,18 +7,7 @@ var bio = {
     skills: ["java","javaScript","grails","Android","Swift"]
 };
 
-var work = {};
-work.position = "Engineer";
-work.employer =  "WhatClinic";
-work.yearsworked = 1;
-work.city = "Dublin";
-
-var education = {};
-education["name"] = "TCD";
-education["years"] = 2;
-education["city"] = "Dublin";
-
-var educationJson ={
+var education ={
     "schools": [
         {
             "institution": "TUKS",
@@ -55,7 +28,58 @@ var educationJson ={
             "pass": 2014
         }
     ]
-}
+};
+
+var work = {
+    "work": [
+    {
+        "employer":"Opticode",
+        "title": "Junior Developer",
+        "location": "Pretoria",
+        "dates": "2001 - 2003",
+        "description": "Developer"
+    },
+    {
+        "employer":"Psybergate",
+        "title": "Developer",
+        "location": "Pretoria",
+        "dates": "2003 - 2005",
+        "description": "Developer"
+    },
+    {
+        "employer":"Mobile Travel Technologies",
+        "title": "Senior Developer",
+        "location": "Dublin",
+        "dates": "2006 - 2013",
+        "description": "Developer"
+    }
+]
+};
+
+var projects = {
+    "projects": [
+    {
+        "title": "SOS LOL",
+        "dates": "2001 - 2003",
+        "description": "Developer",
+        "images": ["images/1.png","images/2.png"]
+    },
+    {
+        "title": "ESAP",
+        "dates": "2003 - 2005",
+        "description": "Developer",
+        "images": ["images/1.png","images/2.png"]
+    },
+    {
+        "title": "Solmelia",
+        "dates": "2003 - 2005",
+        "description": "Developer",
+        "images": ["images/1.png","images/2.png"]
+    }
+]
+};
+
+
 
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
@@ -63,13 +87,10 @@ var formattedContactEmail = HTMLcontactGeneric.replace("%contact%","Email").repl
 var formattedContactTelephone = HTMLcontactGeneric.replace("%contact%","Mobile").replace("%data%", bio.contact.telephone);
 var formattedHTMLbioPic = HTMLbioPic.replace("%data%", bio.pictureUrl);
 var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
-
-var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.position)
-
-var formattedHTMLschoolName = HTMLschoolName.replace("%data%",education["name"])
+var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[0].dates);
+var formattedHTMLschoolDates = HTMLschoolDates.replace("%data%",education.schools[0].pass);
 
 $("#header").prepend([formattedName]);
-
 $("#header").append([formattedRole]);
 
 
@@ -79,8 +100,9 @@ $("#topContacts").append([formattedContactEmail]);
 $("#topContacts").append([formattedContactTelephone]);
 
 $("#workExperience").append(HTMLworkStart);
-$(".work-entry").append(formattedHTMLworkTitle);
+$(".work-entry").append(formattedHTMLworkDates);
 $("#education").append(HTMLschoolStart);
-$(".education-entry").append(formattedHTMLschoolName);
+$(".education-entry").append(formattedHTMLschoolDates);
+
 
 
