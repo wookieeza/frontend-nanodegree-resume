@@ -65,22 +65,53 @@ var projects = {
         "title": "SOS LOL",
         "dates": "2001 - 2003",
         "description": "Developer",
-        "images": ["images/1.png","images/2.png"]
+        "images": ["images/1.jpg","images/2.png"]
     },
     {
         "title": "ESAP",
         "dates": "2003 - 2005",
         "description": "Developer",
-        "images": ["images/1.png","images/2.png"]
+        "images": ["images/1.jpg","images/2.png"]
     },
     {
         "title": "Solmelia",
         "dates": "2003 - 2005",
         "description": "Developer",
-        "images": ["images/1.png","images/2.png"]
+        "images": ["images/1.jpg","images/2.png"]
     }
 ]
 };
+projects.display = function (){
+
+
+   for(project in projects.projects){
+       console.log(projects.projects[project]);
+
+       var formattedHTMLprojectTitle = HTMLprojectTitle.replace("%data%",projects.projects[project].title);
+       var formattedHTMLprojectDates = HTMLprojectDates.replace('%data%',projects.projects[project].dates);
+       var formattedHTMLprojectDescription = HTMLprojectDescription.replace("%data%",projects.projects[project].description);
+       var formattedHTMLprojectImage = HTMLprojectImage.replace("%data%",projects.projects[project].images[0]);
+
+
+       $('#projects').append(HTMLprojectStart);
+       $(".project-entry:last").append(formattedHTMLprojectTitle + formattedHTMLprojectDates + formattedHTMLprojectDescription + formattedHTMLprojectImage);
+   }
+};
+
+projects.display();
+
+$('#main').append(internationalizeButton);
+
+function inName(name){
+
+    if (!name) { name = "boe jangles"};
+
+    var names = name.split(" ");
+
+    return names[0] + " " + names[1].toUpperCase();
+}
+
+console.log(inName("debbie wood"));
 
 if(bio.skills.length>0){
 
@@ -95,18 +126,35 @@ if(bio.skills.length>0){
 
 }
 
-$("#workExperience").append(HTMLworkStart);
-for ( job in work.work){
+function displayWork(){
+    $("#workExperience").append(HTMLworkStart);
+    for ( job in work.work){
+        $("#workExperience").append(HTMLworkStart);
 
-    var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",work.work[job].employer);
-    var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.work[job].title);
-    var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[job].dates);
-    var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%",work.work[job].location);
-    var formattedHTMLworkDescription = HTMLworkDescription.replace("%data%",work.work[job].description);
+        var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",work.work[job].employer);
+        var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.work[job].title);
+        var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[job].dates);
+        var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%",work.work[job].location);
+        var formattedHTMLworkDescription = HTMLworkDescription.replace("%data%",work.work[job].description);
 
-    $(".work-entry").append(formattedHTMLworkEmployer + formattedHTMLworkTitle);
+        $(".work-entry:last").append(formattedHTMLworkEmployer + formattedHTMLworkTitle + formattedHTMLworkDates + formattedHTMLworkLocation + formattedHTMLworkDescription);
+    }
+}
+displayWork();
+
+$(document).click(function (loc){
+    logClicks(loc.pageX,loc.pageY);
+});
+
+
+function locationizer(work) {
+    var locations= [];
+    for (job in work.work){
+       locations.push(work.work[job].location);
+    }
 }
 
+locationizer(work);
 /*
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
