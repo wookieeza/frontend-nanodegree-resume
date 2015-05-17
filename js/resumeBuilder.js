@@ -190,6 +190,7 @@ function locationizer(work) {
 locationizer(work);
 $('#main').append(internationalizeButton);
 $("#mapDiv").append(googleMap);
+//initializeMap()
 
 //checkout d3
 
