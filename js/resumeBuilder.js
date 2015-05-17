@@ -1,7 +1,8 @@
 var bio = {
     name: "Debbie Wood",
     role: "Senior Engineer",
-    contact: { email: "debbie@test.com", telephone: "0879383576"},
+    contacts: { email: "debbie@test.com", telephone: "0879383576", location: "Dublin"},
+
     pictureUrl: "images/fry.jpg",
     welcomeMsg: "hello",
     skills: ["java","javaScript","grails","Android","Swift"]
@@ -10,8 +11,8 @@ bio.display = function(){
 
     var formattedName = HTMLheaderName.replace("%data%",bio.name);
     var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-    var formattedContactEmail = HTMLcontactGeneric.replace("%contact%","Email").replace("%data%", bio.contact.email);
-    var formattedContactTelephone = HTMLcontactGeneric.replace("%contact%","Mobile").replace("%data%", bio.contact.telephone);
+    var formattedContactEmail = HTMLcontactGeneric.replace("%contact%","Email").replace("%data%", bio.contacts.email);
+    var formattedContactTelephone = HTMLcontactGeneric.replace("%contact%","Mobile").replace("%data%", bio.contacts.telephone);
     var formattedHTMLbioPic = HTMLbioPic.replace("%data%", bio.pictureUrl);
     var formattedHTMLwelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMsg);
 
@@ -39,18 +40,21 @@ var education ={
     "schools": [
         {
             "institution": "TUKS",
+            "location": "Pretoria",
             "years": 3,
             "course": " BIS Multimedia",
             "pass": 2004
         },
         {
             "institution": "TUKS",
+            "location": "Pretoria",
             "years": 2,
             "course": "BSc Hons Computer Science",
             "pass": 2006
         },
         {
             "institution": "TCD",
+            "location": "Dublin",
             "years": 2,
             "course": "MSc Health Informatics",
             "pass": 2014
@@ -66,7 +70,7 @@ education.display = function(){
 };
 
 var work = {
-    "work": [
+    "jobs": [
     {
         "employer":"Opticode",
         "employerUrl":"http://www.opticode.co.za",
@@ -95,19 +99,19 @@ var work = {
 };
 work.display = function(){
     $("#workExperience").append(HTMLworkStart);
-    for ( job in work.work){
+    for ( job in work.jobs){
         $("#workExperience").append(HTMLworkStart);
 
-        var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",work.work[job].employer);
-        var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.work[job].title);
-        var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[job].dates);
-        var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%",work.work[job].location);
-        var formattedHTMLworkDescription = HTMLworkDescription.replace("%data%",work.work[job].description);
+        var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",work.jobs[job].employer);
+        var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",work.jobs[job].title);
+        var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.jobs[job].dates);
+        var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%",work.jobs[job].location);
+        var formattedHTMLworkDescription = HTMLworkDescription.replace("%data%",work.jobs[job].description);
 
         $(".work-entry:last").append(formattedHTMLworkEmployer + formattedHTMLworkTitle + formattedHTMLworkDates + formattedHTMLworkLocation + formattedHTMLworkDescription);
     }
 
-    var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.work[0].dates);
+    var formattedHTMLworkDates = HTMLworkDates.replace("%data%",work.jobs[0].dates);
     $("#workExperience").append(HTMLworkStart);
     $(".work-entry").append(formattedHTMLworkDates);
 };
@@ -178,8 +182,8 @@ $(document).click(function (loc){
 
 function locationizer(work) {
     var locations= [];
-    for (job in work.work){
-       locations.push(work.work[job].location);
+    for (job in work.jobs){
+       locations.push(work.jobs[job].location);
     }
 }
 
